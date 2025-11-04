@@ -8,12 +8,16 @@
     <style>
         /* Base Styles */
         :root {
-            --primary: #d4af37;
-            --secondary: #1a365d;
-            --accent: #c53030;
-            --light: #f7fafc;
+            --primary: #1e6b52;
+            --primary-light: #2d8c6e;
+            --secondary: #2c3e50;
+            --accent: #e67e22;
+            --light: #f8f9fa;
             --dark: #2d3748;
             --gray: #718096;
+            --text: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
         
         * {
@@ -29,7 +33,7 @@
         
         body {
             line-height: 1.6;
-            color: var(--dark);
+            color: var(--text);
             background-color: var(--light);
             overflow-x: hidden;
         }
@@ -86,33 +90,33 @@
             border-radius: 4px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             cursor: pointer;
         }
         
         .btn:hover {
-            background: #b8941f;
+            background: var(--primary-light);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .btn-secondary {
-            background: var(--secondary);
+            background: var(--accent);
         }
         
         .btn-secondary:hover {
-            background: #152642;
+            background: #d35400;
         }
         
         /* Header Styles */
         header {
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         header.scrolled {
@@ -155,7 +159,23 @@
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
         }
         
         .nav-links a:hover {
@@ -238,6 +258,12 @@
             background: var(--light);
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
         .stat h3 {
@@ -278,8 +304,8 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
         
         .service-card:hover {
@@ -326,7 +352,7 @@
             border-radius: 30px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .filter-btn.active, .filter-btn:hover {
@@ -343,8 +369,13 @@
         .project-card {
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
         }
         
         .project-image {
@@ -368,11 +399,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(26, 54, 93, 0.9);
+            background: rgba(44, 62, 80, 0.9);
             color: white;
             padding: 20px;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
         
         .project-card:hover .project-overlay {
@@ -381,7 +412,7 @@
         
         /* Testimonials Section */
         .testimonials {
-            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.9)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-attachment: fixed;
             color: white;
@@ -393,7 +424,7 @@
         }
         
         .testimonials h2:after {
-            background: var(--primary);
+            background: var(--accent);
         }
         
         .testimonial-slider {
@@ -423,7 +454,7 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 15px;
-            border: 3px solid var(--primary);
+            border: 3px solid var(--accent);
         }
         
         .client-avatar img {
@@ -452,6 +483,13 @@
         .contact-item {
             display: flex;
             align-items: flex-start;
+            transition: var(--transition);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .contact-item:hover {
+            background: rgba(30, 107, 82, 0.05);
         }
         
         .contact-icon {
@@ -475,7 +513,7 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
         }
         
         .form-group {
@@ -494,12 +532,13 @@
             border: 1px solid #e2e8f0;
             border-radius: 4px;
             font-size: 1rem;
-            transition: border 0.3s ease;
+            transition: var(--transition);
         }
         
         .form-control:focus {
             border-color: var(--primary);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 107, 82, 0.1);
         }
         
         textarea.form-control {
@@ -522,7 +561,7 @@
         }
         
         .footer-column h3 {
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 10px;
@@ -535,7 +574,7 @@
             left: 0;
             width: 40px;
             height: 2px;
-            background: var(--primary);
+            background: var(--accent);
         }
         
         .footer-links {
@@ -549,11 +588,11 @@
         .footer-links a {
             color: #cbd5e0;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
         
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         .social-links {
@@ -571,11 +610,11 @@
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .social-links a:hover {
-            background: var(--primary);
+            background: var(--accent);
             transform: translateY(-3px);
         }
         
@@ -591,6 +630,70 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-5px);
         }
         
         /* Responsive Styles */
@@ -687,6 +790,11 @@
     </style>
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
@@ -982,7 +1090,20 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
     <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+
         // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
@@ -1001,10 +1122,14 @@
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+            
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
+                backToTop.classList.add('show');
             } else {
                 header.classList.remove('scrolled');
+                backToTop.classList.remove('show');
             }
         });
         
